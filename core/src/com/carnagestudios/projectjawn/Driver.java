@@ -2,7 +2,7 @@
  * Carnage Studios
  *
  * File: Driver.java
- * Authors: Vishu Yellisetty, Sidney Nguyen
+ * Authors: Vishu Yellisetty (creator), Sidney Nguyen
  * Date Created: January 13, 2016
  * Date Modified: January 14, 2016
  */
@@ -18,6 +18,7 @@ import com.carnagestudios.projectjawn.states.Menu;
 
 /**
  * This class runs the game application.
+ * Uses a GameStateManager to organize and run all game States.
  */
 public class Driver extends ApplicationAdapter {
 
@@ -70,7 +71,7 @@ public class Driver extends ApplicationAdapter {
 
     /**
      * This method prints debug messages to the console.
-     * 
+     *
      * @param message debug output
      */
     public static void print_debug (String message) {
