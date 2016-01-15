@@ -14,11 +14,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.carnagestudios.projectjawn.Driver;
 
-public class Wall {
+public class Wall extends sprite{
 
-    private Texture texture;
-    private Vector2 position;
-    private Rectangle hitBox;
 
     public Wall (int x, int y) {
         texture = new Texture("sidewall.png");
@@ -34,20 +31,8 @@ public class Wall {
         Driver.remove_assets(1);
     }
 
-    public float getX () {
-        return position.x;
+    public void update(float dt) {//Nothing to update wall has no changing fields.
     }
 
-    public float getY () {
-        return position.y;
-    }
-
-    public Rectangle getHitBox () {
-        return hitBox;
-    }
-
-    public Texture getTexture () {
-        return texture;
-    }
 
 }

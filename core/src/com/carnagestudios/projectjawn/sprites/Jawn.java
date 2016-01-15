@@ -17,12 +17,11 @@ import com.carnagestudios.projectjawn.Driver;
 /**
  * This class represents the Jawn sprite.
  */
-public class Jawn {
+public class Jawn extends sprite{
 
-    private Texture texture;
-    private Vector2 position;
+
     private Vector2 velocity;
-    private Rectangle hitBox;
+
 
     /**
      * This constructor creates a Jawn at a given position.
@@ -63,21 +62,7 @@ public class Jawn {
         velocity.x += dx;
     }
 
-    public Texture getTexture () {
-        return texture;
-    }
 
-    public float getX () {
-        return position.x;
-    }
-
-    public float getY () {
-        return position.y;
-    }
-
-    public Rectangle getHitBox () {
-        return hitBox;
-    }
 
 
 
