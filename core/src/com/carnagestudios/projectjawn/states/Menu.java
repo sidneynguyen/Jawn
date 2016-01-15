@@ -9,6 +9,7 @@
 
 package com.carnagestudios.projectjawn.states;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.carnagestudios.projectjawn.Driver;
@@ -16,6 +17,7 @@ import com.carnagestudios.projectjawn.Driver;
 
 /**
  * This class represents the main Menu of the game application.
+ * It displays text and waits for the user to touch before starting a Play State.
  */
 public class Menu extends State {
 
@@ -43,6 +45,8 @@ public class Menu extends State {
      */
     @Override
     public void handleInput () {
+        if (Gdx.input.isTouched())
+            gsm.push (new Play(gsm));
     }
 
     /**
