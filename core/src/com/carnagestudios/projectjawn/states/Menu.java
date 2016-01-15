@@ -9,6 +9,7 @@
 
 package com.carnagestudios.projectjawn.states;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.carnagestudios.projectjawn.Driver;
 
@@ -18,12 +19,23 @@ import com.carnagestudios.projectjawn.Driver;
  */
 public class Menu extends State {
 
+    private static final int PLAY_TEXT_X = -240;
+    private static final int PLAY_TEXT_Y = 100;
+    private static final int PLAY_TEXT_SCALE = 3;
+
+    private BitmapFont playText;
+
     /**
      * This constructor initializes a new Menu State.
      * @param gsm GameStateManager
      */
     public Menu (GameStateManager gsm) {
         super (gsm);
+
+        playText = new BitmapFont();
+        Driver.add_assets(1);
+
+        playText.getData().scale(PLAY_TEXT_SCALE);
     }
 
     /**
@@ -48,10 +60,15 @@ public class Menu extends State {
      */
     @Override
     public void render (SpriteBatch batch) {
+
+        // set camera to a stretch camera
+        batch.setProjectionMatrix(cam.combined);
+
         // all graphics within begin and end will be drawn to the display
         batch.begin ();
-
+        playText.draw(batch, "TOUCH TO PLAY", PLAY_TEXT_X, PLAY_TEXT_Y);
         batch.end ();
+
     }
 
     /**
@@ -59,7 +76,10 @@ public class Menu extends State {
      */
     @Override
     public void dispose () {
-        Driver.print_debug ("Disposing Menu");
-        Driver.print_debug ("Menu disposed");
+        Driver.print_debug("Disposing Menu");
+        playText.dispose();
+        Driver.remove_assets(1);
+        Driver.print_debug("playText disposed");
+        Driver.print_debug("Menu disposed");
     }
 }
