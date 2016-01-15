@@ -10,6 +10,7 @@
 package com.carnagestudios.projectjawn.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.carnagestudios.projectjawn.Driver;
 
@@ -21,6 +22,7 @@ public class Jawn {
     private Texture texture;
     private Vector2 position;
     private Vector2 velocity;
+    private Rectangle hitBox;
 
     /**
      * This constructor creates a Jawn at a given position.
@@ -33,12 +35,19 @@ public class Jawn {
 
         position = new Vector2 (x, y);
         velocity = new Vector2 (0, 0);
+        hitBox = new Rectangle(x, y, texture.getWidth(), texture.getHeight());
     }
 
     public void update (float dt) {
         velocity.scl(dt);
         position.add(velocity);
-        velocity.scl(1/dt);
+        velocity.scl(1 / dt);
+        hitBox.setPosition(position);
+    }
+
+    public void splat (float x) {
+        setVelocity(0);
+        position.x = x;
     }
 
     /**
@@ -48,6 +57,10 @@ public class Jawn {
         texture.dispose();
         Driver.remove_assets(1);
         Driver.print_debug("Jawn disposed");
+    }
+
+    public void setVelocity (float dx) {
+        velocity.x += dx;
     }
 
     public Texture getTexture () {
@@ -62,8 +75,10 @@ public class Jawn {
         return position.y;
     }
 
-    public void setVelocity (float dx) {
-        velocity.x += dx;
+    public Rectangle getHitBox () {
+        return hitBox;
     }
+
+
 
 }

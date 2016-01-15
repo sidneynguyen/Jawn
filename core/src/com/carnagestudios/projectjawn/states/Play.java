@@ -18,6 +18,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.carnagestudios.projectjawn.Driver;
 import com.carnagestudios.projectjawn.sprites.Jawn;
+import com.carnagestudios.projectjawn.sprites.Wall;
 
 /**
  * This class represents the Play State of the game application.
@@ -27,11 +28,19 @@ public class Play extends State implements GestureDetector.GestureListener {
     private static final int BACKGROUND_X = -540;
     private static final int BACKGROUND_Y = - 960;
 
-    private static final int JAWN_X = -540;
+    private static final int JAWN_X = -530;
     private static final int JAWN_Y = 0;
+
+    private static final int LEFT_WALL_X = -540;
+    private static final int LEFT_WALL_Y = -960;
+
+    private static final int RIGHT_WALL_X = 530;
+    private static final int RIGHT_WALL_Y = -960;
 
     private Texture background;
     private Jawn jawn;
+    private Wall leftWall;
+    private Wall rightWall;
 
     /**
      * This constructor creates a background and a Jawn.
@@ -39,13 +48,15 @@ public class Play extends State implements GestureDetector.GestureListener {
      */
     public Play (GameStateManager gsm) {
         super(gsm);
+        Gdx.input.setInputProcessor(new GestureDetector(this));
 
         background = new Texture("background.png");
         Driver.add_assets(1);
 
         jawn = new Jawn (JAWN_X, JAWN_Y);
+        leftWall = new Wall (LEFT_WALL_X, LEFT_WALL_Y);
+        rightWall = new Wall(RIGHT_WALL_X, RIGHT_WALL_Y);
 
-        Gdx.input.setInputProcessor(new GestureDetector(this));
     }
 
     /**
@@ -63,6 +74,14 @@ public class Play extends State implements GestureDetector.GestureListener {
      */
     @Override
     public void update(float dt) {
+
+        if (jawn.getHitBox().contains(leftWall.getHitBox())) {
+            jawn.splat(-530);
+        }
+        if (jawn.getHitBox().contains(rightWall.getHitBox())) {
+            jawn.splat(380);
+        }
+
         handleInput();
         jawn.update(dt);
     }
@@ -82,6 +101,8 @@ public class Play extends State implements GestureDetector.GestureListener {
 
         batch.draw(background, BACKGROUND_X, BACKGROUND_Y);
         batch.draw(jawn.getTexture(), jawn.getX(), jawn.getY());
+        batch.draw(leftWall.getTexture(), leftWall.getX(), leftWall.getY());
+        batch.draw(rightWall.getTexture(), rightWall.getX(), rightWall.getY());
 
         batch.end();
     }
