@@ -14,7 +14,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.carnagestudios.projectjawn.Driver;
 
-
 /**
  * This class represents the main Menu of the game application.
  * It displays text and waits for the user to touch before starting a Play State.
@@ -41,7 +40,7 @@ public class Menu extends State {
     }
 
     /**
-     * This method handles user input.
+     * This method starts a new Play State.
      */
     @Override
     public void handleInput () {
