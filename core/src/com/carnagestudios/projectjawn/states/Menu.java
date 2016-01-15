@@ -19,8 +19,7 @@ import com.carnagestudios.projectjawn.Driver;
 public class Menu extends State {
 
     /**
-     * This method constructs a new Menu State.
-     *
+     * This constructor initializes a new Menu State.
      * @param gsm GameStateManager
      */
     public Menu (GameStateManager gsm) {
@@ -36,7 +35,6 @@ public class Menu extends State {
 
     /**
      * This method updates the Menu State.
-     *
      * @param dt delta time
      */
     @Override
@@ -46,7 +44,6 @@ public class Menu extends State {
 
     /**
      * This method renders all Menu graphics to the display.
-     *
      * @param batch SpriteBatch
      */
     @Override

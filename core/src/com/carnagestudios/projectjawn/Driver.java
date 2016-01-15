@@ -71,7 +71,6 @@ public class Driver extends ApplicationAdapter {
 
     /**
      * This method prints debug messages to the console.
-     *
      * @param message debug output
      */
     public static void print_debug (String message) {

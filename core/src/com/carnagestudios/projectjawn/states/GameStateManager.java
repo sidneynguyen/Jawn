@@ -1,26 +1,36 @@
+/**
+ * Carnage Studios
+ *
+ * File: GameStateManager.java
+ * Authors: Sidney Nguyen (creator), Vishu Yellisetty
+ * Date Created: January 13, 2016
+ * Date Modified: January 14, 2016
+ */
+
 package com.carnagestudios.projectjawn.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.carnagestudios.projectjawn.Driver;
 
 import java.util.Stack;
 
 /**
- * Utilizes a stack to manage various states of our game, only using the "top"/peek as the "current".
+ * This class utilizes a stack to manage various states of our game, only using the "top"/peek as
+ * the "current".
  */
 public class GameStateManager {
 
     private Stack<State> gameStates;
 
     /**
-     * Constructor
-     * Initializes the gameStates stack.
+     * This constructor initializes the game State stack.
      */
     public GameStateManager() {
         gameStates = new Stack<State>();
     }
 
     /**
-     * Pushes the passed in state onto the GameStateManager stack.
+     * This method pushes on and starts a given game State.
      * @param gameState The state to be pushed onto the top of the gameStates stack.
      */
     public void push(State gameState) {
@@ -28,16 +38,14 @@ public class GameStateManager {
     }
 
     /**
-     * Pops the top state on the GameStateManager stack.
+     * This method destroys the currently running game State.
      */
     public void pop() {
         gameStates.pop().dispose();
     }
 
     /**
-     * This method will remove the top state on the gamestack stack
-     *  and replace it with the passed in state (pushed on in place of
-     *  previoius peek state).
+     * This method will destroy the current game State and push & start a new given game State.
      * @param gameState The new state will become the current/peek state
      */
     public void set(State gameState) {
@@ -46,7 +54,8 @@ public class GameStateManager {
     }
 
     /**
-     * Calls the update method of the peek state and passes in the parameter dt(delta time).
+     * This method calls the update method of the currently running game State and passes in the
+     * parameter dt(delta time).
      * @param dt The delta time or interval of which update method is called.
      */
     public void update(float dt) {
@@ -54,7 +63,8 @@ public class GameStateManager {
     }
 
     /**
-     * Calls the render method of the peek state and gives it the sprite batch.
+     * This method calls the render method of the currently running game State and gives it the
+     * SpriteBatch.
      * @param sb The sprite batch or "assets" to render.
      */
     public void render(SpriteBatch sb) {
@@ -65,10 +75,10 @@ public class GameStateManager {
      * Disposes all states in the stack.
      */
     public void dispose() {
-        System.err.println("Disposing all States");
+        Driver.print_debug ("Disposing all States");
         for (State s: gameStates) {
             s.dispose();
         }
-        System.err.println("All States disposed");
+        Driver.print_debug ("All States disposed");
     }
 }
