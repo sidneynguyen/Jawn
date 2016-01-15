@@ -28,21 +28,25 @@ public class Play extends State implements GestureDetector.GestureListener {
     private static final int BACKGROUND_X = -540;
     private static final int BACKGROUND_Y = - 960;
 
+    //JAWN Start location
     private static final int JAWN_X = -530;
     private static final int JAWN_Y = 0;
 
+    //Wall starting locations
     private static final int LEFT_WALL_X = -540;
     private static final int LEFT_WALL_Y = -960;
-
     private static final int RIGHT_WALL_X = 530;
     private static final int RIGHT_WALL_Y = -960;
 
+    private static final int GAP = 10;
+    private static final int GRAVITY = 10;
 
+    //Sprites
     private Texture background;
     private Jawn jawn;
     private Wall leftWall;
     private Wall rightWall;
-    private boolean isStuckRight, isStuckLeft;
+
     /**
      * This constructor creates a background and a Jawn.
      * @param gsm GameStateManager
@@ -54,15 +58,15 @@ public class Play extends State implements GestureDetector.GestureListener {
         background = new Texture("background.png");
         Driver.add_assets(1);
 
+        //Instansiate sprite objects
         jawn = new Jawn (JAWN_X, JAWN_Y);
-
         leftWall = new Wall (LEFT_WALL_X, LEFT_WALL_Y);
         rightWall = new Wall(RIGHT_WALL_X, RIGHT_WALL_Y);
-
     }
 
     /**
      * This method ends the Play State and returns to the Menu State when the space bar is pressed.
+     * Only when debugger is active
      */
     @Override
     public void handleInput() {
@@ -76,14 +80,17 @@ public class Play extends State implements GestureDetector.GestureListener {
      */
     @Override
     public void update(float dt) {
-
+        //Wall Collision detection
         if (jawn.getHitBox().overlaps(leftWall.getHitBox())) {
-            jawn.splat(-530);
+            jawn.splat(LEFT_WALL_X + GAP);
         }
         if (jawn.getHitBox().overlaps(rightWall.getHitBox())) {
             jawn.splat(380);
         }
+        //Gravity
+        jawn.setVelocityY(-GRAVITY);
 
+        //Update/input
         handleInput();
         jawn.update(dt);
     }
@@ -112,14 +119,20 @@ public class Play extends State implements GestureDetector.GestureListener {
     /**
      * This method listens for a fling and flings Jawn relative to the fling's velocity.
      * @param velocityX Velocity in the X direction of the fling.
-     * @param velocityY
+     * @param velocityY Velocity in the Y direction of the fling.
      * @param button
      * @return true if method is handled
      */
     @Override
     public boolean fling(float velocityX, float velocityY, int button) {
-        jawn.setVelocity(velocityX);
-        System.err.println("fling");
+
+        jawn.setVelocityX(velocityX);
+        jawn.setVelocityY(-velocityY);//sign needs to be flipped
+
+        //system info
+        Driver.print_debug("fling");
+        System.err.println(velocityX);
+        System.err.println(velocityY);
         return true;
     }
 
@@ -143,7 +156,7 @@ public class Play extends State implements GestureDetector.GestureListener {
 
 
 
-
+    //Excess override methods.
 
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {

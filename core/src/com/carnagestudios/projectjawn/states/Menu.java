@@ -20,6 +20,7 @@ import com.carnagestudios.projectjawn.Driver;
  */
 public class Menu extends State {
 
+    //Menu's fields.
     private static final int PLAY_TEXT_X = -240;
     private static final int PLAY_TEXT_Y = 100;
     private static final int PLAY_TEXT_SCALE = 3;

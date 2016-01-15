@@ -36,6 +36,7 @@ public abstract class State {
         viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
+    //Method abstracts
     public abstract void handleInput();
     public abstract void update(float dt);
     public abstract void render(SpriteBatch sb);
