@@ -70,7 +70,7 @@ public class Driver extends ApplicationAdapter {
         print_debug("Disposing GameStateManager");
         gsm.dispose();
         print_debug("GameStateManager disposed");
-        print_debug("Number of undisposed assets:" + asset_count);
+        print_debug("Number of undisposed assets: " + asset_count);
 
 	}
 
@@ -80,7 +80,7 @@ public class Driver extends ApplicationAdapter {
      */
     public static void add_assets (long count) {
         asset_count += count;
-        print_debug(count + " assets added. Total number of assets:" + asset_count);
+        print_debug(count + " assets added. Total number of assets: " + asset_count);
     }
 
     /**
@@ -89,7 +89,7 @@ public class Driver extends ApplicationAdapter {
      */
     public static void remove_assets (long count) {
         asset_count -= count;
-        print_debug(count + " assets removed. Total number of assets:" + asset_count);
+        print_debug(count + " assets removed. Total number of assets: " + asset_count);
     }
 
     /**

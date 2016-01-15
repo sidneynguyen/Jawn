@@ -45,7 +45,7 @@ public class Menu extends State {
      */
     @Override
     public void handleInput () {
-        if (Gdx.input.isTouched())
+        if (Gdx.input.justTouched())
             gsm.push (new Play(gsm));
     }
 
