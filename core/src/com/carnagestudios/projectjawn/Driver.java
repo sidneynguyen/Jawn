@@ -7,10 +7,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.carnagestudios.projectjawn.states.GameStateManager;
 import com.carnagestudios.projectjawn.states.Menu;
 
+/**
+ * Driver class from which the application is run.
+ */
 public class Driver extends ApplicationAdapter {
 	SpriteBatch batch;
     GameStateManager gsm;
-	
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();

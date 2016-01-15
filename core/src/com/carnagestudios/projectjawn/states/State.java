@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * Abstract class to be implemented by any of our game states.
+ */
 public abstract class State {
 
     protected GameStateManager gsm;
