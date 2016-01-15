@@ -24,12 +24,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Wall.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Wall.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Wall.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9654321">
-              <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Play.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/states/Play.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33580247">
+              <caret line="64" column="66" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Sprite.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Sprite.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;method#update#0;class#Sprite#0" expanded="false" />
+                <element signature="docComment;method#dispose#0;class#Sprite#0" expanded="false" />
+                <element signature="docComment;method#getTexture#0;class#Sprite#0" expanded="false" />
+                <element signature="docComment;method#getX#0;class#Sprite#0" expanded="false" />
+                <element signature="docComment;method#getY#0;class#Sprite#0" expanded="false" />
+                <element signature="docComment;method#getHitBox#0;class#Sprite#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,37 +66,11 @@
         <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Jawn.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1399#1400#0" expanded="true" />
-                <element signature="e#1431#1432#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sprite.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/sprite.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;method#update#0;class#sprite#0" expanded="false" />
-                <element signature="docComment;method#dispose#0;class#sprite#0" expanded="false" />
-                <element signature="docComment;method#getTexture#0;class#sprite#0" expanded="false" />
-                <element signature="e#848#849#0" expanded="true" />
-                <element signature="e#878#879#0" expanded="true" />
-                <element signature="docComment;method#getX#0;class#sprite#0" expanded="false" />
-                <element signature="e#995#996#0" expanded="true" />
-                <element signature="e#1028#1029#0" expanded="true" />
-                <element signature="docComment;method#getY#0;class#sprite#0" expanded="false" />
-                <element signature="e#1154#1155#0" expanded="true" />
-                <element signature="e#1187#1188#0" expanded="true" />
-                <element signature="docComment;method#getHitBox#0;class#sprite#0" expanded="false" />
-                <element signature="e#1311#1312#0" expanded="true" />
-                <element signature="e#1340#1341#0" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
+                <element signature="e#1429#1430#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -3444,11 +3446,12 @@
         <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/states/State.java" />
         <option value="$PROJECT_DIR$/desktop/src/com/carnagestudios/projectjawn/desktop/DesktopLauncher.java" />
         <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/states/Menu.java" />
-        <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/states/Play.java" />
         <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/Driver.java" />
-        <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Jawn.java" />
         <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/sprite.java" />
+        <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Sprite.java" />
+        <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Jawn.java" />
         <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Wall.java" />
+        <option value="$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/states/Play.java" />
       </list>
     </option>
   </component>
@@ -4022,10 +4025,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/states/Play.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Wall.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.9654321">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -4041,43 +4044,43 @@
     <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Jawn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1399#1400#0" expanded="true" />
-            <element signature="e#1431#1432#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1429#1430#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/sprite.java">
+    <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Sprite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="docComment;method#update#0;class#sprite#0" expanded="false" />
-            <element signature="docComment;method#dispose#0;class#sprite#0" expanded="false" />
-            <element signature="docComment;method#getTexture#0;class#sprite#0" expanded="false" />
-            <element signature="e#848#849#0" expanded="true" />
-            <element signature="e#878#879#0" expanded="true" />
-            <element signature="docComment;method#getX#0;class#sprite#0" expanded="false" />
-            <element signature="e#995#996#0" expanded="true" />
-            <element signature="e#1028#1029#0" expanded="true" />
-            <element signature="docComment;method#getY#0;class#sprite#0" expanded="false" />
-            <element signature="e#1154#1155#0" expanded="true" />
-            <element signature="e#1187#1188#0" expanded="true" />
-            <element signature="docComment;method#getHitBox#0;class#sprite#0" expanded="false" />
-            <element signature="e#1311#1312#0" expanded="true" />
-            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="docComment;method#update#0;class#Sprite#0" expanded="false" />
+            <element signature="docComment;method#dispose#0;class#Sprite#0" expanded="false" />
+            <element signature="docComment;method#getTexture#0;class#Sprite#0" expanded="false" />
+            <element signature="docComment;method#getX#0;class#Sprite#0" expanded="false" />
+            <element signature="docComment;method#getY#0;class#Sprite#0" expanded="false" />
+            <element signature="docComment;method#getHitBox#0;class#Sprite#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/sprites/Wall.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.8.0/8277330a2b704388b9e941994a146aa48b79664c/gdx-1.8.0-sources.jar!/com/badlogic/gdx/input/GestureDetector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9654321">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="300" column="23" selection-start-line="300" selection-start-column="23" selection-end-line="300" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/carnagestudios/projectjawn/states/Play.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33580247">
+          <caret line="64" column="66" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
           <folding />
         </state>
       </provider>

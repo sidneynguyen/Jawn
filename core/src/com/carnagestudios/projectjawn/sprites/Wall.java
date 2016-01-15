@@ -14,7 +14,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.carnagestudios.projectjawn.Driver;
 
-public class Wall extends sprite{
+public class Wall extends Sprite{
 
 
     public Wall (int x, int y) {

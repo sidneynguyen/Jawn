@@ -17,11 +17,9 @@ import com.carnagestudios.projectjawn.Driver;
 /**
  * This class represents the Jawn sprite.
  */
-public class Jawn extends sprite{
-
+public class Jawn extends Sprite{
 
     private Vector2 velocity;
-
 
     /**
      * This constructor creates a Jawn at a given position.

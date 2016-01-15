@@ -37,11 +37,12 @@ public class Play extends State implements GestureDetector.GestureListener {
     private static final int RIGHT_WALL_X = 530;
     private static final int RIGHT_WALL_Y = -960;
 
+
     private Texture background;
     private Jawn jawn;
     private Wall leftWall;
     private Wall rightWall;
-
+    private boolean isStuckRight, isStuckLeft;
     /**
      * This constructor creates a background and a Jawn.
      * @param gsm GameStateManager
@@ -54,6 +55,7 @@ public class Play extends State implements GestureDetector.GestureListener {
         Driver.add_assets(1);
 
         jawn = new Jawn (JAWN_X, JAWN_Y);
+
         leftWall = new Wall (LEFT_WALL_X, LEFT_WALL_Y);
         rightWall = new Wall(RIGHT_WALL_X, RIGHT_WALL_Y);
 
@@ -75,10 +77,10 @@ public class Play extends State implements GestureDetector.GestureListener {
     @Override
     public void update(float dt) {
 
-        if (jawn.getHitBox().contains(leftWall.getHitBox())) {
+        if (jawn.getHitBox().overlaps(leftWall.getHitBox())) {
             jawn.splat(-530);
         }
-        if (jawn.getHitBox().contains(rightWall.getHitBox())) {
+        if (jawn.getHitBox().overlaps(rightWall.getHitBox())) {
             jawn.splat(380);
         }
 
@@ -109,7 +111,7 @@ public class Play extends State implements GestureDetector.GestureListener {
 
     /**
      * This method listens for a fling and flings Jawn relative to the fling's velocity.
-     * @param velocityX
+     * @param velocityX Velocity in the X direction of the fling.
      * @param velocityY
      * @param button
      * @return true if method is handled

@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
  * Sprite abstract to be extended by any of our in game sprites.
  * Created by vishu on 1/14/2016.
  */
-public abstract class sprite {
+public abstract class Sprite {
     //Sprite Fields
     protected Texture texture;
     protected Vector2 position;
