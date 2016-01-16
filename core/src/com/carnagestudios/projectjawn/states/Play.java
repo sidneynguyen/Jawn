@@ -85,7 +85,7 @@ public class Play extends State implements GestureDetector.GestureListener {
             jawn.splat(LEFT_WALL_X + GAP);
         }
         if (jawn.getHitBox().overlaps(rightWall.getHitBox())) {
-            jawn.splat(380);
+            jawn.splat(RIGHT_WALL_X - jawn.getDiameter());
         }
         //Gravity
         jawn.setVelocityY(-GRAVITY);

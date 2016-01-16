@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/sidney/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-backend-android/1.8.0/33979d6d61ea91a3a758717cbc6acf38fbb6aae2/gdx-backend-android-1.8.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="33979d6d61ea91a3a758717cbc6acf38fbb6aae2">
+        <dex dex="/home/sidney/carnage_studios/project_jawn/android/build/intermediates/pre-dexed/debug/gdx-backend-android-1.8.0_46be78b31fb6b7afff9efeba31cbc93cbdaccf3a.jar" />
+    </item>
+    <item
+        jar="/home/sidney/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx/1.8.0/8aaf0d40f211e94051538d28b06996a6cc5ed2af/gdx-1.8.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8aaf0d40f211e94051538d28b06996a6cc5ed2af">
+        <dex dex="/home/sidney/carnage_studios/project_jawn/android/build/intermediates/pre-dexed/debug/gdx-1.8.0_f5e752dae663788ce7d052e0292ae3a8d6df8b38.jar" />
+    </item>
+    <item
+        jar="/home/sidney/carnage_studios/project_jawn/core/build/libs/core-1.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d5e6c0d00367f01b877d43c4db642f6fd772fe34">
+        <dex dex="/home/sidney/carnage_studios/project_jawn/android/build/intermediates/pre-dexed/debug/core-1.0_96c71a3e5591dccfe90364ff770b0465889fa2f6.jar" />
+    </item>
+    <item
+        jar="/home/sidney/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/gdx-box2d/1.8.0/a87cfc0621180fd6976238366541d6211f9e18a4/gdx-box2d-1.8.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a87cfc0621180fd6976238366541d6211f9e18a4">
+        <dex dex="/home/sidney/carnage_studios/project_jawn/android/build/intermediates/pre-dexed/debug/gdx-box2d-1.8.0_07786c522ee09db3839eb2cabaa16f23fb34937a.jar" />
+    </item>
+
+</items>

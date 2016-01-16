@@ -10,8 +10,8 @@ import com.carnagestudios.projectjawn.Driver;
 public class DesktopLauncher {
 
 	//Fields for the application configuration
-    private static final int SCREEN_WIDTH = 540;
-    private static final int SCREEN_HEIGHT = 960;
+    private static final int SCREEN_WIDTH = 450;
+    private static final int SCREEN_HEIGHT = 800;
 	private static final String TITLE = "JAWN";
 
 	/**

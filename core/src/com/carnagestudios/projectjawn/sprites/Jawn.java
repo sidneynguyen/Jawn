@@ -24,7 +24,6 @@ public class Jawn extends Sprite{
     //JAWN fields.
     private Vector2 velocity;
 
-
     /**
      * This constructor creates a Jawn at a given position.
      * @param x position X position at which to place Jawn.
@@ -96,6 +95,11 @@ public class Jawn extends Sprite{
             velocity.y = -MAX_VELOCITY;
         else
             velocity.y += dy;
+    }
+
+
+    public float getDiameter () {
+        return getHitBox().getWidth();
     }
 
 
