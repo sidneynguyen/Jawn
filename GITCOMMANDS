@@ -1,0 +1,19 @@
+REMOTE BRANCHING:
+git branch [remotebranch]
+git checkout [remotebranch]
+git add -A
+git commit -m "message"
+git push [remotebranch]  # creates remote branch and pushes those changes to remote branch
+git checkout master
+git merge [remotebranch]  # merge branch to master branch
+git push
+
+LOCAL BRANCHING:
+git branch [localbranch]
+git checkout [localbranch]
+git add -A
+git commit -m "[message]"  # do not push or else creates remote branch
+git checkout [remote branch to merge localbranch to]
+git merge [localbranch]
+git branch -D [localbranch]  # if no longer needed
+git push
