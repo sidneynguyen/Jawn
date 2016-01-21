@@ -4,7 +4,7 @@
  * File: Jawn.java
  * Authors: Sidney Nguyen (creator), Vishu Yellisetty
  * Date Created: January 13, 2016
- * Date Modified: January 19, 2016
+ * Date Modified: January 20, 2016
  */
 
 package com.carnagestudios.projectjawn.sprites;
@@ -18,8 +18,6 @@ import com.carnagestudios.projectjawn.Driver;
  */
 public class Jawn extends com.badlogic.gdx.graphics.g2d.Sprite {
 
-    private static final int MAX_VELOCITY = 1000;
-
     //JAWN fields.
     private float velocityX;
     private float velocityY;
@@ -29,12 +27,12 @@ public class Jawn extends com.badlogic.gdx.graphics.g2d.Sprite {
      * @param x position X position at which to place Jawn.
      * @param y position Y position at which to place Jawn
      */
-    public Jawn (int x, int y, Texture texture) {
+    public Jawn (Texture texture, int x, int y) {
         super(texture);
 
         //Initialization
         setPosition (x, y);
-        setVelocityX(0);
+        setVelocityX (0);
         setVelocityY (0);
     }
 
@@ -58,7 +56,6 @@ public class Jawn extends com.badlogic.gdx.graphics.g2d.Sprite {
     public void splat (float x) {
         //Zero out velocity
         setVelocityX (0);
-        setVelocityY (0);
         //Reset x position.
         setX(x);
     }
@@ -68,11 +65,6 @@ public class Jawn extends com.badlogic.gdx.graphics.g2d.Sprite {
      * @param dx Delta X: the X velocity increment.
      */
     public void setVelocityX (float dx) {
-        if (dx > MAX_VELOCITY)
-            velocityX = MAX_VELOCITY;
-        else if (dx < -MAX_VELOCITY)
-            velocityX = -MAX_VELOCITY;
-        else
             velocityX = dx;
     }
 
@@ -81,13 +73,10 @@ public class Jawn extends com.badlogic.gdx.graphics.g2d.Sprite {
      * @param dy Delta Y: the Y velocity increment.
      */
     public void setVelocityY (float dy) {
-        if (dy > MAX_VELOCITY)
-            velocityY = MAX_VELOCITY;
-        else if (dy < -MAX_VELOCITY)
-            velocityY = -MAX_VELOCITY;
-        else
             velocityY = dy;
     }
+
+
 
     public float getVelocityX () { return velocityX; }
     public float getVelocityY () { return velocityY; }

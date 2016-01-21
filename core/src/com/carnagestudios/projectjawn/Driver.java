@@ -4,7 +4,7 @@
  * File: Driver.java
  * Authors: Vishu Yellisetty (creator), Sidney Nguyen
  * Date Created: January 13, 2016
- * Date Modified: January 19, 2016
+ * Date Modified: January 20, 2016
  */
 
 package com.carnagestudios.projectjawn;
@@ -28,14 +28,16 @@ public class Driver extends Game {
     private SpriteBatch batch;     // used to render all images to the display
 
     /**
-     * This method initializes the game and starts a Menu State.
+     * This method initializes the game and starts a Menu Screen.
      */
 	@Override
 	public void create () {
 
 		batch = new SpriteBatch ();
+        add_asset("SpriteBatch");
 
         setScreen (new Menu (this, batch));
+        add_asset("Menu Screen");
 
 	}
 
@@ -44,7 +46,15 @@ public class Driver extends Game {
      */
 	@Override
 	public void dispose () {
+        super.dispose();
+
         batch.dispose();
+        remove_asset("SpriteBatch");
+
+        getScreen().dispose();
+        remove_asset("Current Screen");
+
+        Driver.print_debug("Game disposed");
 	}
 
     /**

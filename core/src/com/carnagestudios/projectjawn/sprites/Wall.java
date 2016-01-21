@@ -4,7 +4,7 @@
  * File: Wall.java
  * Authors: Sidney Nguyen (creator), Vishu Yellisetty
  * Date Created: January 13, 2016
- * Date Modified: January 19, 2016
+ * Date Modified: January 20, 2016
  */
 
 package com.carnagestudios.projectjawn.sprites;
@@ -22,7 +22,7 @@ public class Wall extends com.badlogic.gdx.graphics.g2d.Sprite {
      * @param x : Initial positional x.
      * @param y : Initial positional y.
      */
-    public Wall (int x, int y, Texture texture) {
+    public Wall (Texture texture, int x, int y) {
         super (texture);
         setPosition(x, y);
     }
