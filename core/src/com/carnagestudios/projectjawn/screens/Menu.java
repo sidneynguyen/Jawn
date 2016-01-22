@@ -67,6 +67,7 @@ public class Menu implements Screen {
 
             // start new Play Screen
             driver.setScreen(new Play(driver, batch));
+            Driver.add_asset("Play Screen");
         }
     }
 

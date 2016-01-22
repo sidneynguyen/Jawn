@@ -55,7 +55,9 @@ public class Driver extends Game {
         remove_asset("Current Screen");
 
         Driver.print_debug("Game disposed");
-	}
+        if (asset_count == 0)
+            Driver.print_debug("All assets removed");
+    }
 
     /**
      * This method increments the number of assets added.

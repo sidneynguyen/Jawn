@@ -76,8 +76,6 @@ public class Jawn extends com.badlogic.gdx.graphics.g2d.Sprite {
             velocityY = dy;
     }
 
-
-
     public float getVelocityX () { return velocityX; }
     public float getVelocityY () { return velocityY; }
 

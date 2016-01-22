@@ -52,18 +52,25 @@ public class Play implements Screen, GestureDetector.GestureListener {
     // gravity and velocity constants
     private static final int OPEN_GRAVITY = 50;
     private static final int WALL_GRAVITY = 4;
+
+    // velocity constraints
     private static final int MAX_VELOCITY_X = 1000;
-    private static final int MAX_VELOCITY_Y = 2000;
+    private static final int MAX_VELOCITY_Y = 2500;
     private static final int MIN_VELOCITY_X = 250;
     private static final int MIN_VELOCITY_Y = 500;
-
     private static final int MAX_DOWNWARD_VELOCITY_Y = -3000;
 
+    // when collision with wall
     private static final float FRICTION_MULTIPLIER = 0.1f;
 
     // jawn movement boundaries
     private static final int TOP_BOUND = 200;
     private static final int BOTTOM_BOUND = -200;
+
+    // background looping constants
+    private static final int TOP_BACKGROUND_BOUND = 2880;
+    private static final int BOTTOM_BACKGROUND_BOUND = -2880;
+    private static final int BACKGROUND_LOOP_DISTANCE = 5760;
 
     private int bound;  // boundary Jawn is in (0 neutral, 1 top, 2 bottom)
 
@@ -86,7 +93,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private Texture jawnTexture;
     private Texture wallTexture;
 
-    private int gravity;     // controls gravity
+    private float gravity;     // controls gravity
     private float velocity;  // controls velocity
 
     /**
@@ -144,6 +151,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
             dispose();
             Driver.remove_asset("Play Screen");
             driver.setScreen(new Menu(driver, batch));
+            Driver.add_asset("Menu Screen");
         }
 
         // display Jawn coordinates
@@ -207,7 +215,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
 
         // update sprites
         jawn.update(delta);
-        backgrounds.update(delta, 1920 + 960, -960 - 1920, 1920 + 1920 + 1920);
+        backgrounds.update(delta, TOP_BACKGROUND_BOUND, BOTTOM_BACKGROUND_BOUND, BACKGROUND_LOOP_DISTANCE);
 
         handleInput();
 
@@ -223,9 +231,11 @@ public class Play implements Screen, GestureDetector.GestureListener {
     @Override
     public boolean fling(float velocityX, float velocityY, int button) {
 
+        // check for minimum velocities
         if (velocityX > MIN_VELOCITY_X || velocityX < -MIN_VELOCITY_X || velocityY > MIN_VELOCITY_Y ||
                 velocityY < -MIN_VELOCITY_Y) {
 
+            // set max velocities
             if (velocityX > MAX_VELOCITY_X)
                 velocityX = MAX_VELOCITY_X;
             else if (velocityX < -MAX_VELOCITY_X)
@@ -236,9 +246,11 @@ public class Play implements Screen, GestureDetector.GestureListener {
             else if (velocityY < -MAX_VELOCITY_Y)
                 velocityY = -MAX_VELOCITY_Y;
 
+            // move jawn right, set global velocity
             jawn.setVelocityX(velocityX);
             setVelocity(-velocityY);  // sign needs to be flipped
 
+            // change type of gravity
             setGravity(OPEN_GRAVITY);
 
         }
@@ -292,7 +304,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
      */
     public void setGravity (int gravity) { this.gravity = gravity; }
 
-    public int getGravity () {
+    public float getGravity () {
         return gravity;
     }
 

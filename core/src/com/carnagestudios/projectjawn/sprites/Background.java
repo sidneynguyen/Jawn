@@ -1,7 +1,7 @@
 /**
  * Carnage Studios
  *
- * File: Wall.java
+ * File: Background.java
  * Authors: Sidney Nguyen (creator), Vishu Yellisetty
  * Date Created: January 20, 2016
  * Date Modified: January 20, 2016
