@@ -15,6 +15,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
@@ -25,6 +26,8 @@ import com.carnagestudios.projectjawn.Driver;
 import com.carnagestudios.projectjawn.sprites.Background;
 import com.carnagestudios.projectjawn.sprites.BackgroundList;
 import com.carnagestudios.projectjawn.sprites.Jawn;
+import com.carnagestudios.projectjawn.sprites.Obstacle;
+import com.carnagestudios.projectjawn.sprites.ObstacleList;
 import com.carnagestudios.projectjawn.sprites.Wall;
 
 import java.util.ArrayList;
@@ -34,7 +37,10 @@ import java.util.ArrayList;
  * It controls the interactions between users and the sprites.
  */
 public class Play implements Screen, GestureDetector.GestureListener {
-
+    //Score constants
+    private static final int SCORE_TEXT_SCALE = 2;
+    private static final int SCORE_TEXT_X = -500;
+    private static final int SCORE_TEXT_Y = 900;
     // background constants
     private static final int BACKGROUND_X = -540;
     private static final int BACKGROUND_Y = - 960;
@@ -42,6 +48,12 @@ public class Play implements Screen, GestureDetector.GestureListener {
     // JAWN Start location
     private static final int JAWN_X = -530;
     private static final int JAWN_Y = 0;
+
+    //Obstacle Constants
+    private static final int NUMBER_OBSTACLES = 5;
+    private static final int TOP_OF_SCREEN = 960;
+    private static final int BOTTOM_OF_SCREEN = -960;
+    private static final int SPAWN_GAP = 40;
 
     // wall starting locations
     private static final int LEFT_WALL_X = -540;
@@ -86,15 +98,22 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private Wall leftWall;          // left boundary
     private Wall rightWall;         // right boundary
 
+    private ObstacleList obstacles;     // Holds all the obstacles.
     private BackgroundList backgrounds; // creates illusion of player movement
 
     // Texture assets
     private Texture backgroundTexture;
     private Texture jawnTexture;
     private Texture wallTexture;
+    private Texture obstacleTexture;
 
     private float gravity;     // controls gravity
     private float velocity;  // controls velocity
+
+    private int obstacleDeltaY; // Moving obstacles
+
+    private int score = 0; //Players score.
+    private BitmapFont scoreText;
 
     /**
      * This constructor creates a background and a Jawn.
@@ -107,14 +126,19 @@ public class Play implements Screen, GestureDetector.GestureListener {
         this.cam = new OrthographicCamera();
         this.viewport = new StretchViewport(Driver.SCREEN_WIDTH, Driver.SCREEN_HEIGHT, cam);
         this.viewport.update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        this.scoreText = new BitmapFont(); //Score text
+        Driver.add_asset("play font");
+        scoreText.getData().scale(SCORE_TEXT_SCALE);
 
         // create texture assets
-        this.backgroundTexture = new Texture("background.png");
-        Driver.add_asset("background texture");
-        this.jawnTexture = new Texture("jawn.png");
+        this.backgroundTexture = new Texture("background2.png");
+        Driver.add_asset("background2 texture");
+        this.jawnTexture = new Texture("jawn2.png");
         Driver.add_asset("jawn texture");
         this.wallTexture = new Texture("sidewall.png");
         Driver.add_asset("wall texture");
+        this.obstacleTexture = new Texture("Bacteria3.gif");
+        Driver.add_asset("Bacteria texture");
 
         // touch event handler
         Gdx.input.setInputProcessor(new GestureDetector(this));
@@ -132,6 +156,14 @@ public class Play implements Screen, GestureDetector.GestureListener {
         backgrounds.add(background0);
         backgrounds.add(background1);
         backgrounds.add(background2);
+        // Instantiate Obstacles list
+        obstacles = new ObstacleList();
+        for( int i = 0; i < NUMBER_OBSTACLES; i++)
+        {
+            Obstacle newObstacle = new Obstacle(obstacleTexture, LEFT_WALL_X, RIGHT_WALL_X - obstacleTexture.getWidth(), TOP_OF_SCREEN * (i+1)+ SPAWN_GAP , TOP_OF_SCREEN* (i+2) );
+            newObstacle.setIsOnScreen(false);
+            obstacles.add(newObstacle);
+        }
 
         // initialize gravity
         setGravity(WALL_GRAVITY);
@@ -165,7 +197,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
      * @param delta seconds per frame
      */
     public void update(float delta) {
-
+        obstacleDeltaY = 0;
         // collision detection
         if (jawn.getBoundingRectangle().overlaps(leftWall.getBoundingRectangle())) {
             jawn.splat (LEFT_WALL_X + leftWall.getWidth() + 1);
@@ -176,6 +208,15 @@ public class Play implements Screen, GestureDetector.GestureListener {
             jawn.splat (RIGHT_WALL_X - jawn.getWidth() - 1);
             setVelocity(getVelocity() * FRICTION_MULTIPLIER);
             setGravity (WALL_GRAVITY);
+        }
+        for(int i = 0; i<NUMBER_OBSTACLES; i++)
+        {
+            if(obstacles.getObstacle(i).isOnScreen()) { //Collision with on screen obstacles.
+                if (obstacles.getObstacle(i).getBoundingRectangle().overlaps(jawn.getBoundingRectangle())) {
+                    driver.setScreen(new Menu(driver, batch)); //lose
+                    break;
+                }
+            }
         }
 
         // update ball's current bound
@@ -200,11 +241,12 @@ public class Play implements Screen, GestureDetector.GestureListener {
         // move dynamic sprites
         if (bound == 0) {
             jawn.setY (jawn.getY() + getVelocity());
+
         }
         else {
             backgrounds.moveY(-getVelocity());
+            obstacleDeltaY = (int) -getVelocity(); //If we move background we move obstacles with it.
         }
-
         // finish using time
         setVelocity(getVelocity() / delta);
 
@@ -214,6 +256,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
             setVelocity(MAX_DOWNWARD_VELOCITY_Y);
 
         // update sprites
+        score+=obstacles.update(0, obstacleDeltaY);
         jawn.update(delta);
         backgrounds.update(delta, TOP_BACKGROUND_BOUND, BOTTOM_BACKGROUND_BOUND, BACKGROUND_LOOP_DISTANCE);
 
@@ -277,9 +320,12 @@ public class Play implements Screen, GestureDetector.GestureListener {
         batch.begin();
 
         backgrounds.draw(batch);
+        obstacles.draw(batch);
         leftWall.draw(batch);
         rightWall.draw(batch);
         jawn.draw(batch);
+
+        scoreText.draw(batch, "Score: "+score, SCORE_TEXT_X, SCORE_TEXT_Y);
 
         batch.end();
 
@@ -296,6 +342,11 @@ public class Play implements Screen, GestureDetector.GestureListener {
         Driver.remove_asset("jawn texture");
         wallTexture.dispose();
         Driver.remove_asset("wall texture");
+        obstacleTexture.dispose();
+        Driver.remove_asset("obstacle texture");
+        scoreText.dispose();
+        Driver.remove_asset("score text");
+
     }
 
     /**

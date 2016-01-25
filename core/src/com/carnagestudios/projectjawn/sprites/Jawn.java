@@ -60,6 +60,14 @@ public class Jawn extends com.badlogic.gdx.graphics.g2d.Sprite {
         setX(x);
     }
 
+    public void die ()
+    {
+        //Falls down with zero X velocity.
+        setVelocityY( 0);
+        setVelocityX(0);
+        //Should end game
+    }
+
     /**
      * Adds X velocity only if it won't exceed the maximum velocity otherwise sets to max velocity.
      * @param dx Delta X: the X velocity increment.
