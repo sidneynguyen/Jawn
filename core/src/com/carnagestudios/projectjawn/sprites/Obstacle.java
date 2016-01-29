@@ -16,8 +16,8 @@ import java.util.Random;
  */
 public class Obstacle extends com.badlogic.gdx.graphics.g2d.Sprite{
    //Constants
-    private static final int TOP_OF_SCREEN = 960;
-    private static final int BOTTOM_OF_SCREEN = -960;
+    protected static final int TOP_OF_SCREEN = 960;
+    protected static final int BOTTOM_OF_SCREEN = -960;
 
 
     //Obstacle fields. (Intitially we do not move obstacles.)
@@ -32,21 +32,11 @@ public class Obstacle extends com.badlogic.gdx.graphics.g2d.Sprite{
     /**
      *
      * @param texture: The obstacles texture.
-     * @param xmin: The minimum x value inclusive at which the obstacle can be placed.
-     * @param xmax: The maximum x value inclusive at which the obstacle can be placed.
-     * @param ymin: The minimum y value inclusive at which the obstacle can be placed.
-     * @param ymax: The maximum x value inclusive at which the obstacle can be placed.
+     *
      */
-    public Obstacle (Texture texture, int xmin,int xmax, int ymin, int ymax) {
+    public Obstacle (Texture texture) {
         super(texture);
-        //Initialization
 
-        //Randomize position
-        randomizePosition (xmin,xmax, ymin, ymax);
-        //Set fields.
-
-        setVelocityX(0);
-        setVelocityY(0);
     }
 
     /**
@@ -85,26 +75,9 @@ public class Obstacle extends com.badlogic.gdx.graphics.g2d.Sprite{
      * Update the coordinates.
      * @param deltaX: The change in the X coordinate.
      * @param deltaY: The change in the Y coordinate.
-     * @return The number of obstacles passed. (0 or 1)
      */
-    public int update (float deltaX, float deltaY) {
-       int numberPassed = 0;
-        this.setPosition(this.getX() + deltaX, this.getY() + deltaY);
-
-        if( isOnScreen() == true) {
-            if (this.getY() < BOTTOM_OF_SCREEN) {
-
-                randomizePosition(-530, 530 - (int) this.getWidth(), TOP_OF_SCREEN, 2 * TOP_OF_SCREEN);
-                this.setIsOnScreen(false);
-                numberPassed ++;
-            }
-        }
-
-         else if (this.getY() < TOP_OF_SCREEN)
-         {
-             this.setIsOnScreen(true);
-         }
-        return numberPassed;
+    public void update (float deltaX, float deltaY) {
+       this.setPosition(this.getX() + deltaX, this.getY() + deltaY);
     }
 
 

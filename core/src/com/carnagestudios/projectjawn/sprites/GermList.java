@@ -18,26 +18,26 @@ import java.util.ArrayList;
 /**
  * Class containing list of the Obstacles.
  */
-public class ObstacleList {
+public class GermList {
     //Constants
     public static final int numberObstacles = 6;
 
-    private ArrayList<Obstacle> obstacles;  // stores all Obstacle sprites
+    private ArrayList<Germ> germs;  // stores all Obstacle sprites
 
     /**
      * This constructor creates a list data structure for obstacles.
      */
-    public ObstacleList () {
-        obstacles = new ArrayList<Obstacle>();
+    public GermList () {
+        germs = new ArrayList<Germ>();
 
     }
 
     /**
-     * This method adds an obstacle to the list.
-     * @param obstacle
+     * This method adds a germ to the list.
+     * @param germ
      */
-    public void add (Obstacle obstacle) {
-        obstacles.add(obstacle);
+    public void add (Germ germ) {
+        germs.add(germ);
     }
 
     /**
@@ -48,12 +48,12 @@ public class ObstacleList {
      */
     public int update(int deltaX, int deltaY)
     {
-       int numberObstaclesPassed = 0;
-        for (Obstacle o: obstacles) {
-            numberObstaclesPassed+=o.update(deltaX, deltaY);
+       int numberGermsPassed = 0;
+        for (Germ g: germs) {
+            numberGermsPassed+=g.updateGerm(deltaX, deltaY);
 
         }
-        return numberObstaclesPassed;
+        return numberGermsPassed;
     }
 
     /**
@@ -61,20 +61,20 @@ public class ObstacleList {
      * @param batch
      */
     public void draw (SpriteBatch batch) {
-        for (Obstacle o: obstacles) {
-            if (o.isOnScreen()) {
-                o.draw(batch);
+        for (Germ g: germs) {
+            if (g.isOnScreen()) {
+                g.draw(batch);
             }
         }
     }
 
     /**
-     * Return an obstacle from the array list given an index.
-     * @param indexOf The obstacle to return.
-     * @return An obstacle at indexOf.
+     * Return a germ from the array list given an index.
+     * @param indexOf The germ to return.
+     * @return A germ at indexOf.
      */
-    public Obstacle getObstacle ( int indexOf )
+    public Obstacle getGerm ( int indexOf )
     {
-        return obstacles.get(indexOf);
+        return germs.get(indexOf);
     }
 }

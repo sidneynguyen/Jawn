@@ -25,9 +25,10 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.carnagestudios.projectjawn.Driver;
 import com.carnagestudios.projectjawn.sprites.Background;
 import com.carnagestudios.projectjawn.sprites.BackgroundList;
+import com.carnagestudios.projectjawn.sprites.Germ;
+import com.carnagestudios.projectjawn.sprites.GermList;
 import com.carnagestudios.projectjawn.sprites.Jawn;
 import com.carnagestudios.projectjawn.sprites.Obstacle;
-import com.carnagestudios.projectjawn.sprites.ObstacleList;
 import com.carnagestudios.projectjawn.sprites.Wall;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private static final int JAWN_Y = 0;
 
     //Obstacle Constants
-    private static final int NUMBER_OBSTACLES = 5;
+    private static final int NUMBER_GERMS = 5;
     private static final int TOP_OF_SCREEN = 960;
     private static final int BOTTOM_OF_SCREEN = -960;
     private static final int SPAWN_GAP = 40;
@@ -98,19 +99,19 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private Wall leftWall;          // left boundary
     private Wall rightWall;         // right boundary
 
-    private ObstacleList obstacles;     // Holds all the obstacles.
+    private GermList germs;     // Holds all the obstacles.
     private BackgroundList backgrounds; // creates illusion of player movement
 
     // Texture assets
     private Texture backgroundTexture;
     private Texture jawnTexture;
     private Texture wallTexture;
-    private Texture obstacleTexture;
+    private Texture germTexture;
 
     private float gravity;     // controls gravity
     private float velocity;  // controls velocity
 
-    private int obstacleDeltaY; // Moving obstacles
+    private int germDeltaY; // Moving obstacles
 
     private int score = 0; //Players score.
     private BitmapFont scoreText;
@@ -137,7 +138,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
         Driver.add_asset("jawn texture");
         this.wallTexture = new Texture("sidewall.png");
         Driver.add_asset("wall texture");
-        this.obstacleTexture = new Texture("Bacteria3.gif");
+        this.germTexture = new Texture("Bacteria3.gif");
         Driver.add_asset("Bacteria texture");
 
         // touch event handler
@@ -157,12 +158,12 @@ public class Play implements Screen, GestureDetector.GestureListener {
         backgrounds.add(background1);
         backgrounds.add(background2);
         // Instantiate Obstacles list
-        obstacles = new ObstacleList();
-        for( int i = 0; i < NUMBER_OBSTACLES; i++)
+        germs = new GermList();
+        for( int i = 0; i < NUMBER_GERMS; i++)
         {
-            Obstacle newObstacle = new Obstacle(obstacleTexture, LEFT_WALL_X, RIGHT_WALL_X - obstacleTexture.getWidth(), TOP_OF_SCREEN * (i+1)+ SPAWN_GAP , TOP_OF_SCREEN* (i+2) );
-            newObstacle.setIsOnScreen(false);
-            obstacles.add(newObstacle);
+            Germ newGerm = new Germ(germTexture, LEFT_WALL_X, RIGHT_WALL_X - germTexture.getWidth(), TOP_OF_SCREEN * (i+1)+ SPAWN_GAP , TOP_OF_SCREEN* (i+2) );
+            newGerm.setIsOnScreen(false);
+            germs.add(newGerm);
         }
 
         // initialize gravity
@@ -197,7 +198,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
      * @param delta seconds per frame
      */
     public void update(float delta) {
-        obstacleDeltaY = 0;
+        germDeltaY = 0;
         // collision detection
         if (jawn.getBoundingRectangle().overlaps(leftWall.getBoundingRectangle())) {
             jawn.splat (LEFT_WALL_X + leftWall.getWidth() + 1);
@@ -207,12 +208,12 @@ public class Play implements Screen, GestureDetector.GestureListener {
         if (jawn.getBoundingRectangle().overlaps(rightWall.getBoundingRectangle())) {
             jawn.splat (RIGHT_WALL_X - jawn.getWidth() - 1);
             setVelocity(getVelocity() * FRICTION_MULTIPLIER);
-            setGravity (WALL_GRAVITY);
+            setGravity(WALL_GRAVITY);
         }
-        for(int i = 0; i<NUMBER_OBSTACLES; i++)
+        for(int i = 0; i<NUMBER_GERMS; i++)
         {
-            if(obstacles.getObstacle(i).isOnScreen()) { //Collision with on screen obstacles.
-                if (obstacles.getObstacle(i).getBoundingRectangle().overlaps(jawn.getBoundingRectangle())) {
+            if(germs.getGerm(i).isOnScreen()) { //Collision with on screen obstacles.
+                if (germs.getGerm(i).getBoundingRectangle().overlaps(jawn.getBoundingRectangle())) {
                     driver.setScreen(new Menu(driver, batch)); //lose
                     break;
                 }
@@ -245,7 +246,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
         }
         else {
             backgrounds.moveY(-getVelocity());
-            obstacleDeltaY = (int) -getVelocity(); //If we move background we move obstacles with it.
+            germDeltaY = (int) -getVelocity(); //If we move background we move obstacles with it.
         }
         // finish using time
         setVelocity(getVelocity() / delta);
@@ -256,7 +257,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
             setVelocity(MAX_DOWNWARD_VELOCITY_Y);
 
         // update sprites
-        score+=obstacles.update(0, obstacleDeltaY);
+        score+=germs.update(0, germDeltaY);
         jawn.update(delta);
         backgrounds.update(delta, TOP_BACKGROUND_BOUND, BOTTOM_BACKGROUND_BOUND, BACKGROUND_LOOP_DISTANCE);
 
@@ -320,7 +321,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
         batch.begin();
 
         backgrounds.draw(batch);
-        obstacles.draw(batch);
+        germs.draw(batch);
         leftWall.draw(batch);
         rightWall.draw(batch);
         jawn.draw(batch);
@@ -342,7 +343,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
         Driver.remove_asset("jawn texture");
         wallTexture.dispose();
         Driver.remove_asset("wall texture");
-        obstacleTexture.dispose();
+        germTexture.dispose();
         Driver.remove_asset("obstacle texture");
         scoreText.dispose();
         Driver.remove_asset("score text");
