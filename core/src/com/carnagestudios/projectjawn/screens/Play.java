@@ -30,6 +30,7 @@ import com.carnagestudios.projectjawn.sprites.GermList;
 import com.carnagestudios.projectjawn.sprites.Jawn;
 import com.carnagestudios.projectjawn.sprites.Obstacle;
 import com.carnagestudios.projectjawn.sprites.Wall;
+import com.carnagestudios.projectjawn.sprites.Water;
 
 import java.util.ArrayList;
 
@@ -55,6 +56,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private static final int TOP_OF_SCREEN = 960;
     private static final int BOTTOM_OF_SCREEN = -960;
     private static final int SPAWN_GAP = 40;
+    private static final long SPAWN_WATER_X = -560;
 
     // wall starting locations
     private static final int LEFT_WALL_X = -540;
@@ -99,6 +101,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private Wall leftWall;          // left boundary
     private Wall rightWall;         // right boundary
 
+    private Water water;
     private GermList germs;     // Holds all the obstacles.
     private BackgroundList backgrounds; // creates illusion of player movement
 
@@ -107,6 +110,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private Texture jawnTexture;
     private Texture wallTexture;
     private Texture germTexture;
+    private Texture waterTexture;
 
     private float gravity;     // controls gravity
     private float velocity;  // controls velocity
@@ -140,6 +144,8 @@ public class Play implements Screen, GestureDetector.GestureListener {
         Driver.add_asset("wall texture");
         this.germTexture = new Texture("Bacteria3.gif");
         Driver.add_asset("Bacteria texture");
+        this.waterTexture = new Texture("water.png");
+        Driver.add_asset("water texture");
 
         // touch event handler
         Gdx.input.setInputProcessor(new GestureDetector(this));
@@ -151,6 +157,8 @@ public class Play implements Screen, GestureDetector.GestureListener {
         background0 = new Background(backgroundTexture, BACKGROUND_X, BACKGROUND_Y);
         background1 = new Background(backgroundTexture, BACKGROUND_X, BACKGROUND_Y + Driver.SCREEN_HEIGHT);
         background2 = new Background(backgroundTexture, BACKGROUND_X, BACKGROUND_Y - Driver.SCREEN_HEIGHT);
+        water = new Water(waterTexture, SPAWN_WATER_X, BOTTOM_OF_SCREEN - waterTexture.getHeight());
+
 
         // instantiate background list for dynamic movement
         backgrounds = new BackgroundList();
@@ -228,13 +236,14 @@ public class Play implements Screen, GestureDetector.GestureListener {
         else if (bound == 1 && getVelocity() < 0) {
             bound = 0;
         }
+        /*
         else if (bound == 0 && jawn.getY() < BOTTOM_BOUND) {
             jawn.setY(BOTTOM_BOUND);
             bound = 2;
         }
         else if (bound == 2 && getVelocity() > 0) {
             bound = 0;
-        }
+        }*/
 
         // stabilize time
         setVelocity(getVelocity() * delta);
@@ -247,6 +256,8 @@ public class Play implements Screen, GestureDetector.GestureListener {
         else {
             backgrounds.moveY(-getVelocity());
             germDeltaY = (int) -getVelocity(); //If we move background we move obstacles with it.
+            if ( getVelocity() > 0)
+                water.shiftDown(getVelocity());
         }
         // finish using time
         setVelocity(getVelocity() / delta);
@@ -260,7 +271,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
         score+=germs.update(0, germDeltaY);
         jawn.update(delta);
         backgrounds.update(delta, TOP_BACKGROUND_BOUND, BOTTOM_BACKGROUND_BOUND, BACKGROUND_LOOP_DISTANCE);
-
+        water.updateWater(delta);
         handleInput();
 
     }
@@ -325,6 +336,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
         leftWall.draw(batch);
         rightWall.draw(batch);
         jawn.draw(batch);
+        water.draw(batch);
 
         scoreText.draw(batch, "Score: "+score, SCORE_TEXT_X, SCORE_TEXT_Y);
 
@@ -345,6 +357,8 @@ public class Play implements Screen, GestureDetector.GestureListener {
         Driver.remove_asset("wall texture");
         germTexture.dispose();
         Driver.remove_asset("obstacle texture");
+        waterTexture.dispose();
+        Driver.remove_asset("Water texture");
         scoreText.dispose();
         Driver.remove_asset("score text");
 
