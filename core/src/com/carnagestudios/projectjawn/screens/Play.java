@@ -52,7 +52,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private static final int JAWN_Y = 0;
 
     //Obstacle Constants
-    private static final int NUMBER_GERMS = 5;
+    private static final int NUMBER_GERMS = 100;
     private static final int TOP_OF_SCREEN = 960;
     private static final int BOTTOM_OF_SCREEN = -960;
     private static final int SPAWN_GAP = 40;
@@ -69,8 +69,8 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private static final int WALL_GRAVITY = 4;
 
     // velocity constraints
-    private static final int MAX_VELOCITY_X = 1000;
-    private static final int MAX_VELOCITY_Y = 2500;
+    private static final int MAX_VELOCITY_X = 1500;
+    private static final int MAX_VELOCITY_Y = 2000;
     private static final int MIN_VELOCITY_X = 250;
     private static final int MIN_VELOCITY_Y = 500;
     private static final int MAX_DOWNWARD_VELOCITY_Y = -3000;
@@ -79,7 +79,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private static final float FRICTION_MULTIPLIER = 0.1f;
 
     // jawn movement boundaries
-    private static final int TOP_BOUND = 200;
+    private static final int TOP_BOUND = 100;
     private static final int BOTTOM_BOUND = -200;
 
     // background looping constants
@@ -217,6 +217,12 @@ public class Play implements Screen, GestureDetector.GestureListener {
             jawn.splat (RIGHT_WALL_X - jawn.getWidth() - 1);
             setVelocity(getVelocity() * FRICTION_MULTIPLIER);
             setGravity(WALL_GRAVITY);
+        }
+        if( jawn.getBoundingRectangle().overlaps(water.getBoundingRectangle()))
+        {
+            jawn.die();
+            driver.setScreen(new Menu(driver, batch)); //lose
+
         }
         for(int i = 0; i<NUMBER_GERMS; i++)
         {
