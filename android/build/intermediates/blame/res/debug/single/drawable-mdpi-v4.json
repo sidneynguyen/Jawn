@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/home/sidney/project_jawn/android/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_launcher.png",
+        "source": "/home/sidney/project_jawn/android/res/drawable-mdpi/ic_launcher.png"
+    },
+    {
         "merged": "/home/sidney/carnage_studios/project_jawn/android/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_launcher.png",
         "source": "/home/sidney/carnage_studios/project_jawn/android/res/drawable-mdpi/ic_launcher.png"
     }

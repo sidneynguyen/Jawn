@@ -58,7 +58,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private static final int TOP_OF_SCREEN = 960;
     private static final int BOTTOM_OF_SCREEN = -960;
     private static final int SPAWN_GAP = 40;
-    private static final long SPAWN_WATER_X = -560;
+    private static final long SPAWN_WATER_X = -550;
 
     // wall starting locations
     private static final int LEFT_WALL_X = -540;
@@ -244,6 +244,11 @@ public class Play implements Screen, GestureDetector.GestureListener {
         {
             if(germs.getGerm(i).isOnScreen()) { //Collision with on screen obstacles.
                 if (germs.getGerm(i).getBoundingRectangle().overlaps(jawn.getBoundingRectangle())) {
+                    if (score > hScore) {
+                        Preferences pref = Gdx.app.getPreferences("Preferences");
+                        pref.putInteger("hs", score);
+                        pref.flush();
+                    }
                     driver.setScreen(new Menu(driver, batch)); //lose
                     break;
                 }

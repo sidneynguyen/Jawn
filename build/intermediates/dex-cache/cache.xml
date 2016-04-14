@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="/home/sidney/carnage_studios/project_jawn/core/build/libs/core-1.0.jar"
+        jar="/home/sidney/project_jawn/core/build/libs/core-1.0.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="ac45b42bf047d421802d1d40b2c8c27b5785aed9">
-        <dex dex="/home/sidney/carnage_studios/project_jawn/android/build/intermediates/pre-dexed/debug/core-1.0_96c71a3e5591dccfe90364ff770b0465889fa2f6.jar" />
+        sha1="b24ebd7f61b501c2221ee2d6796416b726b77d6e">
+        <dex dex="/home/sidney/project_jawn/android/build/intermediates/pre-dexed/debug/core-1.0_7173ab6140a6591036cd5460d2aa377925512fff.jar" />
     </item>
 
 </items>
