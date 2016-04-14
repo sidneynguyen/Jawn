@@ -10,7 +10,9 @@
 package com.carnagestudios.projectjawn.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -37,6 +39,9 @@ public class Menu implements Screen {
 
     private BitmapFont playText;  // text displayed to screen
 
+    private BitmapFont highScore;
+    private int hScore;
+
     /**
      * This constructor initializes a new Menu Screen.
      */
@@ -53,6 +58,12 @@ public class Menu implements Screen {
         this.playText = new BitmapFont();
         Driver.add_asset("play font");
         playText.getData().scale(PLAY_TEXT_SCALE);
+
+        Preferences pref = Gdx.app.getPreferences("Preferences");
+        hScore = pref.getInteger("hs", 0);
+        highScore = new BitmapFont();
+        highScore.setColor(Color.WHITE);
+        highScore.getData().scale(2);
     }
 
     /**
@@ -85,7 +96,7 @@ public class Menu implements Screen {
      */
     @Override
     public void render(float delta) {
-        update (delta);
+        update(delta);
 
         // clear Screen with solid blue color before rendering each frame
         Gdx.gl.glClearColor(0, 0, 1, 1);
@@ -98,6 +109,7 @@ public class Menu implements Screen {
         batch.begin ();
 
         playText.draw(batch, "TOUCH TO PLAY", PLAY_TEXT_X, PLAY_TEXT_Y);
+        highScore.draw(batch, "High Score " + hScore, 200, 900);
 
         batch.end();
     }
@@ -108,6 +120,7 @@ public class Menu implements Screen {
     @Override
     public void dispose () {
         playText.dispose();
+        highScore.dispose();
         Driver.remove_asset("playText");
     }
 

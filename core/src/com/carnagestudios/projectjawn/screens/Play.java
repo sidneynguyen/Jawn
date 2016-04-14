@@ -11,7 +11,9 @@ package com.carnagestudios.projectjawn.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -120,6 +122,9 @@ public class Play implements Screen, GestureDetector.GestureListener {
     private int score = 0; //Players score.
     private BitmapFont scoreText;
 
+    private BitmapFont highScore;
+    private int hScore;
+
     /**
      * This constructor creates a background and a Jawn.
      */
@@ -180,6 +185,12 @@ public class Play implements Screen, GestureDetector.GestureListener {
 
         // which bound ball is currently in
         bound = 0;
+
+        Preferences pref = Gdx.app.getPreferences("Preferences");
+        hScore = pref.getInteger("hs", 0);
+        highScore = new BitmapFont();
+        highScore.setColor(Color.WHITE);
+        highScore.getData().scale(SCORE_TEXT_SCALE);
     }
 
     /**
@@ -221,6 +232,11 @@ public class Play implements Screen, GestureDetector.GestureListener {
         if( jawn.getBoundingRectangle().overlaps(water.getBoundingRectangle()))
         {
             jawn.die();
+            if (score > hScore) {
+                Preferences pref = Gdx.app.getPreferences("Preferences");
+                pref.putInteger("hs", score);
+                pref.flush();
+            }
             driver.setScreen(new Menu(driver, batch)); //lose
 
         }
@@ -345,6 +361,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
         water.draw(batch);
 
         scoreText.draw(batch, "Score: "+score, SCORE_TEXT_X, SCORE_TEXT_Y);
+        highScore.draw(batch, "High Score " + hScore, 200, SCORE_TEXT_Y);
 
         batch.end();
 
@@ -367,6 +384,7 @@ public class Play implements Screen, GestureDetector.GestureListener {
         Driver.remove_asset("Water texture");
         scoreText.dispose();
         Driver.remove_asset("score text");
+        highScore.dispose();
 
     }
 
